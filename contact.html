@@ -6,7 +6,7 @@
   <title>Contact | Top 2 Bottom Home Solutions — Handyman in Naples, FL</title>
   <meta name="description" content="Contact Top 2 Bottom Home Solutions for a free handyman quote anywhere in Southwest Florida. Call or text (239) 528-7188 or send a quote request online.">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="stylesheet" href="css/styles-v3.css">
+  <link rel="stylesheet" href="css/styles-v4.css">
 </head>
 <body>
 
@@ -166,44 +166,31 @@
   </footer>
 
 
-  <!-- ============ Chat assistant (front-end; live AI backend pending) ============ -->
+  <!-- ============ Chatbot (scripted; runs fully in the browser, no backend) ============ -->
   <div class="chat-widget" id="chat-widget">
-    <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Chat with the Top 2 Bottom Home Solutions assistant" hidden>
+    <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Chat with the Top 2 Bottom Home Solutions chatbot" hidden>
       <div class="chat-head">
         <div>
           <strong>Top 2 Bottom Home Solutions</strong>
-          <span>Virtual assistant</span>
+          <span>Chatbot: answers &amp; free estimates</span>
         </div>
         <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">&times;</button>
       </div>
-      <div class="chat-body">
-        <p class="chat-msg">Hi! I&rsquo;m the Top 2 Bottom Home Solutions assistant. Tell me what you need help with and we&rsquo;ll get right back to you &mdash; or tap Call for the fastest answer.</p>
-        <a class="btn btn--primary btn--block" href="tel:+12395287188">Call (239) 528-7188</a>
-        <form class="chat-form" id="chat-form" novalidate>
-          <div class="field">
-            <label for="chat-name">Your name</label>
-            <input type="text" id="chat-name" name="chat-name" autocomplete="name" placeholder="Your name">
-          </div>
-          <div class="field">
-            <label for="chat-phone">Phone</label>
-            <input type="tel" id="chat-phone" name="chat-phone" autocomplete="tel" placeholder="(239) 555-0123">
-          </div>
-          <div class="field">
-            <label for="chat-need">What do you need done?</label>
-            <textarea id="chat-need" name="chat-need" placeholder="One repair or a whole list — tell us here."></textarea>
-          </div>
-          <button class="btn btn--primary btn--block" type="submit">Send Request</button>
-          <p class="form-note">Opens a text to us with your details. Prefer to talk? Call or text (239) 528-7188.</p>
-          <p class="chat-success" id="chat-success" role="status" hidden>Thanks! Your text app should open with your request ready to send. We call back within 24 hours.</p>
-        </form>
-      </div>
+      <div class="chat-log" id="chat-log" aria-live="polite" aria-label="Chat conversation"></div>
+      <div class="chat-chips" id="chat-chips" role="group" aria-label="Quick replies"></div>
+      <form class="chat-inputbar" id="chat-input-form">
+        <label class="sr-only" for="chat-text">Type your message</label>
+        <input type="text" id="chat-text" name="chat-text" autocomplete="off" placeholder="Type a message or tap a button above">
+        <button class="chat-send" type="submit" aria-label="Send message">Send</button>
+      </form>
     </div>
-    <button class="chat-launcher" id="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel" aria-label="Open chat assistant">
+    <button class="chat-launcher" id="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel" aria-label="Open chat">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
       <span>Chat</span>
     </button>
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
    - Mobile navigation toggle
    - Header shadow on scroll
    - Quote form -> composes an SMS draft to Matt's phone (no backend)
-   - Chat form -> composes an SMS draft to Matt's phone (no backend)
+   - (The chatbot lives in js/chatbot.js)
    - Footer year
    ============================================================ */
 (function () {
@@ -51,8 +51,8 @@
   });
 
   /* ---------- Requests go to Matt's phone by text ----------
-     Front-end only (no backend): the quote form and the chat form
-     both open the visitor's text app with a prefilled message to
+     Front-end only (no backend): the quote form opens
+     the visitor's text app with a prefilled message to
      Top 2 Bottom Home Solutions, (239) 528-7188. Matt asked for
      requests by text, not email (intake form, Oct 30, 2026). */
   var SMS_NUMBER = "+12395287188";
@@ -132,47 +132,4 @@
     });
   });
 
-  /* ---------- Chat assistant (front-end only) ----------
-     Collects name + phone + need and hands off through the same
-     SMS channel as the quote form: a prefilled text to Matt's
-     phone. Live AI backend hookup pending. */
-  var chatLauncher = document.getElementById("chat-launcher");
-  var chatPanel = document.getElementById("chat-panel");
-  var chatClose = document.getElementById("chat-close");
-  var chatForm = document.getElementById("chat-form");
-
-  function setChat(open) {
-    if (!chatPanel || !chatLauncher) return;
-    chatPanel.hidden = !open;
-    chatLauncher.setAttribute("aria-expanded", open ? "true" : "false");
-    if (open) {
-      var first = document.getElementById("chat-name");
-      if (first) first.focus();
-    }
-  }
-  if (chatLauncher && chatPanel) {
-    chatLauncher.addEventListener("click", function () {
-      setChat(chatPanel.hidden);
-    });
-    if (chatClose) chatClose.addEventListener("click", function () { setChat(false); chatLauncher.focus(); });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !chatPanel.hidden) { setChat(false); chatLauncher.focus(); }
-    });
-    // Allow demos/tests to open the panel directly: page.html?chat=open
-    if (/[?&]chat=open/.test(window.location.search)) setChat(true);
-  }
-  if (chatForm) {
-    chatForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var n = document.getElementById("chat-name").value.trim();
-      var ph = document.getElementById("chat-phone").value.trim();
-      var need = document.getElementById("chat-need").value.trim();
-      var focusId = !n ? "chat-name" : !ph ? "chat-phone" : !need ? "chat-need" : null;
-      if (focusId) { document.getElementById(focusId).focus(); return; }
-      var body = ["Website chat request \u2014 " + n, "", "Name: " + n, "Phone: " + ph, "", "What they need:", need].join("\n");
-      window.location.href = smsHref(body);
-      var ok = document.getElementById("chat-success");
-      if (ok) ok.hidden = false;
-    });
-  }
 })();
