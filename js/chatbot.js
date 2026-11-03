@@ -16,7 +16,7 @@
   var PHONE_DISPLAY = "(239) 528-7188";
   var PHONE_TEL = "tel:+12395287188";
   var SMS_NUMBER = "+12395287188";
-  var EMAIL = "top2bottomhomesolutionswfl@yahoo.com";
+  var EMAIL = "top2bottomhomesolutionswfl@gmail.com";
   var BIO = "I truly believe in honesty, Loyalty, integrity, and constant communication as keys factors in business and life.";
   var SERVICES = [
     "Drywall & Painting",
