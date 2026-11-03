@@ -18,7 +18,7 @@
   --radius: 14px;
   --shadow-sm: 0 1px 3px rgba(1, 48, 102, 0.08);
   --shadow-md: 0 10px 30px rgba(1, 48, 102, 0.12);
-  --header-h: 88px;
+  --header-h: 160px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -141,7 +141,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
   line-height: 1.15;
 }
 .brand img.brand-mark { height: 46px; width: auto; flex: none; object-fit: contain; }
-.brand img.brand-logo { height: 72px; width: auto; flex: none; object-fit: contain; }
+.brand img.brand-logo { height: 144px; width: auto; flex: none; object-fit: contain; }
 .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.12; }
 .brand-name { font-size: 1.31rem; font-weight: 800; color: var(--navy); letter-spacing: 0.01em; white-space: nowrap; }
 .brand-two { color: var(--accent); }
@@ -659,9 +659,9 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
 }
 .chat-send:hover { background: var(--navy); }
 @media (max-width: 720px) {
-  :root { --header-h: 72px; }
+  :root { --header-h: 128px; }
   .brand img.brand-mark { height: 34px; max-width: 36vw; object-fit: contain; }
-  .brand img.brand-logo { height: 56px; max-width: 56vw; object-fit: contain; }
+  .brand img.brand-logo { height: 112px; max-width: 70vw; object-fit: contain; }
   .brand-name { font-size: 1.05rem; }
   .brand-sub { font-size: 0.62rem; letter-spacing: 2.4px; margin-top: 2px; }
   .chat-widget { right: 0.9rem; bottom: 0.9rem; }
