@@ -158,7 +158,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
   border-radius: 8px;
 }
 .main-nav a:hover { background: var(--bg-soft); color: var(--navy); }
-.main-nav .btn { margin-left: 0.5rem; padding: 0.6rem 1.25rem; min-height: 56px; font-size: 0.95rem; }
+.main-nav .btn { margin-left: 0.5rem; padding: 0.6rem 1.25rem; min-height: 44px; font-size: 0.95rem; }
 
 .nav-toggle {
   display: none;
