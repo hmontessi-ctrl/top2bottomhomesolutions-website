@@ -5,9 +5,9 @@
    services. Every answer comes from the business's verified
    facts (the same facts published on this site). It never
    invents prices, reviews, ratings, or license claims.
-   Estimate requests are handed off as a prefilled text message
-   that the VISITOR sends from their own phone to Matt — nothing
-   is transmitted by this script.
+   Estimate requests are handed off as a prefilled email, a call
+   link, or a prefilled text message that the VISITOR sends to
+   Matt — nothing is transmitted by this script.
    ============================================================ */
 (function () {
   "use strict";
@@ -33,6 +33,12 @@
   function smsHref(body) {
     // "?&body=" is the cross-platform form: iOS reads "&body", Android "?body".
     return "sms:" + SMS_NUMBER + "?&body=" + encodeURIComponent(body);
+  }
+
+  function emailHref(body) {
+    return "mailto:" + EMAIL +
+      "?subject=" + encodeURIComponent("Estimate request \u2014 Top 2 Bottom Home Solutions") +
+      "&body=" + encodeURIComponent(body);
   }
 
   function validatePhone(value) {
@@ -217,10 +223,10 @@
             return {
               messages: [
                 summaryText(),
-                "Tap the button below and your text app will open with this request filled in for Matt at " + PHONE_DISPLAY + ". Attach any photos of the job to that text before you send it. Nothing is sent until you tap send in your text app."
+                "Your request is ready. Send it to Matt whichever way is easiest: tap Email and your mail app opens with everything filled in, tap Call to reach him at " + PHONE_DISPLAY + ", or tap Text if you are on your phone. You can attach photos of the job to the email or the text. Nothing is sent until you tap send."
               ],
               chips: ["Start a new request", "Done"],
-              summary: { data: Object.assign({}, data), smsHref: smsHref(smsBody()), smsBody: smsBody(), telHref: PHONE_TEL }
+              summary: { data: Object.assign({}, data), smsHref: smsHref(smsBody()), smsBody: smsBody(), telHref: PHONE_TEL, emailHref: emailHref(smsBody()) }
             };
           default:
             return { messages: [], chips: null };
@@ -236,6 +242,7 @@
     createFlow: createFlow,
     validatePhone: validatePhone,
     smsHref: smsHref,
+    emailHref: emailHref,
     FALLBACK: FALLBACK,
     MENU_CHIPS: MENU_CHIPS,
     SERVICE_CHIPS: SERVICE_CHIPS
@@ -313,16 +320,21 @@
   function addSummaryActions(summary) {
     var wrap = document.createElement("div");
     wrap.className = "chat-actions";
-    var a = document.createElement("a");
-    a.className = "btn btn--primary btn--block";
-    a.href = summary.smsHref;
-    a.textContent = "Text this to Matt";
+    var e = document.createElement("a");
+    e.className = "btn btn--primary btn--block";
+    e.href = summary.emailHref;
+    e.textContent = "Email this to Matt";
     var c = document.createElement("a");
     c.className = "btn btn--outline btn--block";
     c.href = summary.telHref;
-    c.textContent = "Call " + PHONE_DISPLAY + " instead";
-    wrap.appendChild(a);
+    c.textContent = "Call " + PHONE_DISPLAY;
+    var a = document.createElement("a");
+    a.className = "btn btn--outline btn--block";
+    a.href = summary.smsHref;
+    a.textContent = "Text this to Matt";
+    wrap.appendChild(e);
     wrap.appendChild(c);
+    wrap.appendChild(a);
     log.appendChild(wrap);
     scrollLog();
   }
